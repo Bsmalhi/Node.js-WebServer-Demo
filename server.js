@@ -6,7 +6,9 @@ const port = process.env.PORT || 3000;
 var app = express();
 
 hbs.registerPartials(__dirname +'/views/partials');
+
 app.set('view engine', 'hbs');
+
 hbs.registerHelper('getCurrentYear', ()=>{
     return new Date().getFullYear();
 });
@@ -45,6 +47,13 @@ app.get('/about', (req, res)=>{
         currentYear: new Date().getFullYear()
     });
 });
+
+app.get('/project', (req, res)=>{
+    res.render('project.hbs', {
+        pageTitle:"Project Page"
+    });
+});
+
 app.listen(port, ()=>{
     console.log(`server is running on port ${port}`);
 });
